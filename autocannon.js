@@ -5,7 +5,7 @@ const finishedBench = (err, res) => {
   const { average } = throughput;
   const listByPid = {};
   responses.forEach((response) => {
-    const [pid, hostname] = response.split("-");
+    const [pid, hostname] = response.split("/");
 
     if (!listByPid[hostname]) {
       listByPid[hostname] = {};
@@ -22,7 +22,7 @@ const finishedBench = (err, res) => {
     "Throughput:",
     Intl.NumberFormat("es", {
       maximumFractionDigits: 0,
-    }).format(average / duration),
+    }).format(average / duration / 60),
     "req/sec"
   );
 };

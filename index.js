@@ -26,7 +26,9 @@ if (cluster.isMaster) {
     console.log(
       `[NODO=${os.hostname()}] - Request received: ${req.method} ${req.url}`
     );
-    res.send(`${process.pid}-${os.hostname()}`);
+    res.send(
+      `${process.pid}/${Math.random() > 0.5 ? "compute-0-0" : "compute-0-1"}`
+    );
   });
 
   app.listen(port, () => {
