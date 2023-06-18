@@ -6,7 +6,7 @@ app.get("/", (req, res) => {
   console.log(
     `[NODO=${os.hostname()}] - Request received: ${req.method} ${req.url}`
   );
-  res.send("Hello World!");
+  res.send("Hola desde " + os.hostname());
 });
 
 app.listen(port, () => {
