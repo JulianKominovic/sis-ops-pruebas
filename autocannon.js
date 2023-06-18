@@ -5,11 +5,16 @@ const finishedBench = (err, res) => {
   const { average } = throughput;
   const listByPid = {};
   responses.forEach((response) => {
-    const [, pid] = /.*\[PROCESO=(.*)\].*/i.exec(response);
-    if (listByPid[pid]) {
-      listByPid[pid]++;
+    const [pid, hostname] = response.split("-");
+
+    if (!listByPid[hostname]) {
+      listByPid[hostname] = {};
+    }
+
+    if (listByPid[hostname][pid]) {
+      listByPid[hostname][pid] += 1;
     } else {
-      listByPid[pid] = 1;
+      listByPid[hostname][pid] = 1;
     }
   });
   console.log(listByPid);

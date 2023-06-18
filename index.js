@@ -26,7 +26,7 @@ if (cluster.isMaster) {
     console.log(
       `[NODO=${os.hostname()}] - Request received: ${req.method} ${req.url}`
     );
-    res.send(`Hola desde [NODO=${os.hostname()}] - [PROCESO=${process.pid}]`);
+    res.send(`${process.pid}-${os.hostname()}`);
   });
 
   app.listen(port, () => {
